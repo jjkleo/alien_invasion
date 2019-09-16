@@ -16,11 +16,13 @@ def run_game():
 	screen=pygame.display.set_mode((ai_settings.screen_width,ai_settings.screen_height))
 	pygame.display.set_caption("Alien Invasion")
 	
-	#创建一艘飞船
+	#创飞船、子弹和外星人的编组
 	ship=Ship(ai_settings,screen)
-	
-	#创建一个存储子弹的编组
 	bullets=Group()
+	aliens=Group()
+	
+	#创建外星人群
+	gf.create_fleet(ai_settings,screen,ship,aliens)
 	
 	#设置背景色
 	bg_color=(230,230,230)
@@ -31,7 +33,7 @@ def run_game():
 		gf.check_events(ai_settings,screen,ship,bullets)
 		ship.update()
 		gf.update_bullets(bullets)
-		gf.update_screen(ai_settings,screen,ship,bullets)
-		
+		gf.update_aliens(ai_settings,aliens)
+		gf.update_screen(ai_settings,screen,ship,aliens,bullets)
 
 run_game()
